@@ -9,42 +9,27 @@ This repository implements a complete, end‑to‑end pipeline for generating co
 - UMAP visualisation
 - Drug‑class neighbourhood analysis
 
-The workflow is modular, reproducible, and designed for HPC environments. Each stage is implemented as a Jupyter notebook (exported here as .py), forming a clear linear pipeline.
+The workflow is modular and each stage is implemented as a Jupyter notebook, forming a clear linear pipeline.
 <br>
 
 ----
 # Table of Contents
-- [Pipeline Structure](#pipeline-structure)
-- [1. Preprocess LINCS (1_preprocess_lincs)](#1-preprocess-lincs)
-- [2. Preprocess RNA‑seq (2_preprocess_rnaseq)](#2-preprocess-rna-seq)
-- [3. Preprocess STRING (3_preprocess_string)](#3-preprocess-string)
-- [4. Analyse Base Graph (4_analyse_base-graph)](#4-analyse-base-graph)
-- [5. Generate Context Graphs (5_generate_context_graphs)](#5-generate-context-graphs)
-- [6. Generate Embeddings (6_generate_embeddings)](#6-generate-embeddings)
-- [7A. Analyse ID‑Level Embeddings (7A_analyse_id_embeddings)](#7a-analyse-id-level-embeddings-7a_analyse_id_embeddings)
-- [7B. Analyse Name‑Level Embeddings (7B_analyse_name_embeddings)](#7b-analyse-name-level-embeddings-7b_analyse_name_embeddings)
-- [Outputs Summary](#outputs-summary)
-- [Reproducibility & HPC Notes](#reproducibility--hpc-notes)
-- [Citation](#citation)
-- [Contact](#contact)
 
-----
-# Pipeline Structure
+## [📄 Notebook Summary](#notebook-summary-1)
+### [💊 Preprocess LINCS](#1-preprocess-lincs)
+### [🧬 Preprocess RNA‑seq](#2-preprocess-rna-seq)
+### [🧵 Preprocess STRING](#3-preprocess-string)
+### [🔎 Analyse Base Graph](#4-analyse-base-graph)
+### [🛠️ Generate Context Graphs](#5-generate-context-graphs)
+### [🤖 Generate Embeddings](#6-generate-embeddings)
+### [🔎 Analyse ID‑Level Embeddings](#7a-analyse-id-level-embeddings-7a_analyse_id_embeddings)
+### [🔎 Analyse Name‑Level Embeddings](#7b-analyse-name-level-embeddings-7b_analyse_name_embeddings)
 
-```text
-1_preprocess_lincs/
-2_preprocess_rnaseq/
-3_preprocess_string/
-4_analyse_base_graph/
-5_generate_context_graphs/
-6_generate_embeddings/
-7A_analyse_id_embeddings/
-7B_analyse_name_embeddings/
-```
+## [📚 Citation](#citation)
 <br>
 
 ----
-# Script Summary
+# 📄 Notebook Summary
 
 ## 1. Preprocess LINCS
 Clean and harmonise LINCS L1000 metadata and perturbagen annotations.
@@ -162,7 +147,7 @@ Analyses mirror 7A:
 This allows comparison between ID‑level and NAME‑level embedding behaviour.
 
 ----
-# Citation
+# 📄 Citation
 If you use this pipeline in academic work, please cite:
 - STRING database
 - LINCS L1000 dataset
