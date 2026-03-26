@@ -16,16 +16,37 @@ The workflow is modular and each stage is implemented as a Jupyter notebook, for
 # Table of Contents
 
 ## [📄 Notebook Summary](#notebook-summary-1)
-### [💊 Preprocess LINCS](#1-preprocess-lincs)
-### [🧬 Preprocess RNA‑seq](#2-preprocess-rna-seq)
-### [🧵 Preprocess STRING](#3-preprocess-string)
-### [🔎 Analyse Base Graph](#4-analyse-base-graph)
-### [🛠️ Generate Context Graphs](#5-generate-context-graphs)
-### [🤖 Generate Embeddings](#6-generate-embeddings)
-### [🔎 Analyse ID‑Level Embeddings](#7a-analyse-id-level-embeddings-7a_analyse_id_embeddings)
-### [🔎 Analyse Name‑Level Embeddings](#7b-analyse-name-level-embeddings-7b_analyse_name_embeddings)
+### [1. Preprocess LINCS](#1-preprocess-lincs)
+### [2. Preprocess RNA‑seq](#2-preprocess-rna-seq)
+### [3. Preprocess STRING](#3-preprocess-string)
+### [4. Analyse Base Graph](#4-analyse-base-graph)
+### [5. Generate Context Graphs](#5-generate-context-graphs)
+### [6. Generate Embeddings](#6-generate-embeddings)
+### [7. Analyse ID‑Level Embeddings](#7a-analyse-id-level-embeddings-7a_analyse_id_embeddings)
+### [8. Analyse Name‑Level Embeddings](#7b-analyse-name-level-embeddings-7b_analyse_name_embeddings)
 
 ## [📚 Citation](#citation)
+<br>
+
+# 📄 Table Of Contents
+
+## Preprocessing
+- [1. Preprocess LINCS](#1-preprocess-lincs-1_preprocess_lincs)
+- [2. Preprocess RNA‑seq](#2-preprocess-rna-seq-2_preprocess_rnaseq)
+- [3. Preprocess STRING](#3-preprocess-string-3_preprocess_string)
+
+## Graph Construction
+- [4. Analyse Base Graph](#4-analyse-base-graph-4_analyse-base-graph)
+- [5. Generate Context Graphs](#5-generate-context-graphs-5_generate_context_graphs)
+
+## GIN Graph Embedding
+- [6. Generate Embeddings](#6-generate-embeddings-6_generate_embeddings)
+
+## Embedding Analysis
+- [7A. Analyse ID‑Level Embeddings](#7a-analyse-id-level-embeddings-7a_analyse_id_embeddings)
+- [7B. Analyse Name‑Level Embeddings](#7b-analyse-name-level-embeddings-7b_analyse_name_embeddings)
+
+## Supporting Information
 <br>
 
 ----
@@ -34,11 +55,12 @@ The workflow is modular and each stage is implemented as a Jupyter notebook, for
 ## 1. Preprocess LINCS
 Clean and harmonise LINCS L1000 metadata and perturbagen annotations.
 
-### Key steps
+### Workflow
 - Load raw LINCS metadata.
 - Standardise perturbagen IDs and names.
 - Filter for high‑quality profiles.
-- Export:
+
+### Exports
 - df_perturbagen_info.csv
 - lists of drug classes (statins, opioids, profens, HDAC inhibitors)
 
@@ -47,20 +69,20 @@ These files are used throughout the pipeline.
 ## 2. Preprocess RNA‑seq
 Prepare expression matrices for downstream graph construction.
 
-### Key steps
+### Workflow
 - Load raw RNA‑seq matrices.
 - Normalise and filter genes.
 - Align gene identifiers with STRING.
-- Export cleaned matrices per experimental context.
+- Exports cleaned matrices per experimental context.
 
 ## 3. Preprocess STRING
 Build the base protein–protein interaction (PPI) graph.
 
-### Key steps
+### Workflow
 - Load STRING interactions.
 - Filter by confidence score.
 - Convert to a weighted NetworkX graph.
-- Export:
+- Exports:
 - graph_base.pkl
 - node lists
 - edge‑weight distributions
@@ -83,13 +105,13 @@ This validates that landmark genes provide reasonable functional coverage.
 ## 5. Generate Context Graphs
 Build subgraphs representing each experimental context.
 
-### Key steps
+### Workflow
 - For each perturbagen × timepoint:
 - Select top DE genes.
 - Extract induced subgraph from the base STRING network.
 - Annotate graph metadata (name, timepoint, perturbagen ID).
 
-### Export
+### Exports
 - Graphs for CID (per experiment)
 - Graphs for MEAN (averaged per perturbagen)
 - Graphs for NAME (averaged per perturbagen name)
@@ -100,7 +122,7 @@ These graphs are the direct input to the GNN.
 
 Train a graph neural network and embed each context graph.
 
-### Key steps
+### Workflow
 - Convert NetworkX graphs → PyTorch Geometric format.
 - Train a GNN encoder (e.g., GraphSAGE / GCN).
 - Generate embeddings for:
@@ -108,7 +130,7 @@ Train a graph neural network and embed each context graph.
 - MEAN‑level graphs
 - NAME‑level graphs
 
-### Export:
+### Exports:
 - list_emb.pkl — list of embedding matrices
 - list_pyg.pkl — list of graph objects with metadata
 
